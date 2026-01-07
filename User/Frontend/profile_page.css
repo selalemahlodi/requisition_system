@@ -1,0 +1,197 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; 
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+.header {
+    background-color: #0e14e3; 
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0; 
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-weight: bold;
+    line-height: 1.2;
+    font-size: 0.9em;
+}
+
+.user-icon img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+
+.profile-content-wrapper {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; 
+    padding: 40px 20px;
+}
+
+
+.profile-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px; 
+}
+
+
+.profile-details-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.profile img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #ccc; 
+    border: 1px solid #999;
+}
+
+.profile-fields {
+    flex-grow: 1;
+}
+
+.field-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.field-row label {
+    font-weight: bold;
+    width: 140px; 
+    text-align: right;
+    padding-right: 10px;
+    font-size: 0.95em;
+    flex-shrink: 0;
+}
+
+.profile-fields input[type="text"],
+.profile-fields input[type="email"],
+.password-section input[type="password"] {
+    flex-grow: 1;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 0.95em;
+    max-width: 250px;
+}
+
+.profile-fields .input-short {
+    max-width: 50px;
+    margin-left: 5px;
+}
+
+.ext-label {
+    margin-left: 20px;
+    margin-right: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+
+.password-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.password-section h2 {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.password-section .field-row {
+    align-items: baseline;
+}
+
+.password-strength-placeholder {
+    margin-left: 20px;
+    font-size: 0.9em;
+    color: #666;
+    flex-grow: 1;
+}
+
+.strength-bar {
+    width: 150px; 
+    height: 5px;
+    background-color: #ccc;
+    margin-left: 10px;
+}
+
+
+.action-buttons {
+    margin-top: 40px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.btn-save, .btn-cancel {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.btn-save {
+    background-color: #f0f0f0;
+}
+
+.btn-cancel {
+    background-color: #f0f0f0;
+}
+
+.btn-save:hover, .btn-cancel:hover {
+    background-color: #e0e0e0;
+}
+
+.action-buttons .icon {
+    margin-right: 8px;
+    font-size: 1.2em;
+}

@@ -1,0 +1,179 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+.header {
+    background-color: #0e14e3; 
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-weight: bold;
+    line-height: 1.2;
+    font-size: 0.9em;
+}
+
+.user-icon img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+
+.content-wrapper {
+    display: flex;
+    flex-grow: 1; 
+    overflow: hidden; 
+}
+
+.sidebar {
+    width: 250px; 
+    background-color: #a9a9a9; 
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    border-right: 1px solid #000;
+    flex-shrink: 0; 
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    border-bottom: 1px solid #888; 
+}
+
+.nav-item:hover {
+    background-color: #888;
+}
+
+.home-icon {
+    justify-content: center;
+    font-size: 2em;
+    border-bottom: 2px solid #000;
+    margin-bottom: 15px;
+}
+
+.nav-item .icon {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+
+.main-content {
+    flex-grow: 1; 
+    padding: 30px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.main-title {
+    text-decoration: underline;
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 100%; 
+}
+
+
+.table-container {
+    width: 100%;
+    overflow-x: auto; 
+}
+
+
+.requisition-table {
+    width: 100%; 
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    min-width: 1200px; 
+}
+
+.requisition-table th, .requisition-table td {
+    border: 1px solid #000;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.requisition-table th {
+    background-color: #a9a9a9; 
+    font-weight: bold;
+    white-space: nowrap; 
+}
+
+.quote-icon {
+    display: block;
+    text-align: center;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #000;
+}
+
+
+.pagination-arrows {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.arrow-button {
+    background-color: #a9a9a9; 
+    color: #000;
+    border: none;
+    border-radius: 50%; 
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.arrow-button:hover:not(.disabled) {
+    background-color: #888;
+}
+
+.arrow-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
