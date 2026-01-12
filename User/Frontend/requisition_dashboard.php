@@ -1,7 +1,7 @@
 <?php
 
 $css_version = filemtime('requisition_dashboard.css'); 
-$js_version = filemtime('dashboard_data.js'); 
+// $js_version = filemtime('dashboard_data.js'); 
 
 
 $dashboard_stats = [
