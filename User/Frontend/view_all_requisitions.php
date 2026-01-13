@@ -3,44 +3,7 @@
 $css_version = filemtime('view_all_requisitions.css'); 
 
 
-$requisitions = [
-    [
-        'id' => 1, 'description' => 'Refund', 'date_created' => '20/08/2025', 'total' => 'R10',
-        'mgr_approval' => 'Pending', 'mgr_date_mod' => '20/08/2025', 'mgr_notes' => '',
-        'fin_approval' => 'Awaiting', 'fin_date_mod' => '01/09/2025', 'fin_notes' => 'Need a quote of R150 for tools',
-        'quote1' => true, 'quote2' => false, 'quote3' => false
-    ],
-    [
-        'id' => 2, 'description' => 'Laptops', 'date_created' => '21/08/2025', 'total' => 'R20',
-        'mgr_approval' => 'Approved', 'mgr_date_mod' => '22/08/2025', 'mgr_notes' => 'Got quote from other stores',
-        'fin_approval' => 'Approved', 'fin_date_mod' => '02/09/2025', 'fin_notes' => '',
-        'quote1' => true, 'quote2' => true, 'quote3' => false
-    ],
-    [
-        'id' => 3, 'description' => 'Router', 'date_created' => '23/08/2025', 'total' => 'R122',
-        'mgr_approval' => 'Forwarded to Finance', 'mgr_date_mod' => '24/08/2025', 'mgr_notes' => '',
-        'fin_approval' => 'Awaiting', 'fin_date_mod' => '', 'fin_notes' => '',
-        'quote1' => false, 'quote2' => false, 'quote3' => false
-    ],
-    [
-        'id' => 4, 'description' => 'Printer', 'date_created' => '25/08/2025', 'total' => 'R50',
-        'mgr_approval' => 'Rejected', 'mgr_date_mod' => '26/08/2025', 'mgr_notes' => 'Not on the budget',
-        'fin_approval' => 'Rejected', 'fin_date_mod' => '', 'fin_notes' => '',
-        'quote1' => false, 'quote2' => false, 'quote3' => false
-    ],
-    [
-        'id' => 5, 'description' => 'Table', 'date_created' => '26/08/2025', 'total' => 'R1000',
-        'mgr_approval' => 'Forwarded to Finance', 'mgr_date_mod' => '27/08/2025', 'mgr_notes' => '',
-        'fin_approval' => 'Rejected', 'fin_date_mod' => '03/09/2025', 'fin_notes' => 'Out of budget',
-        'quote1' => true, 'quote2' => true, 'quote3' => true
-    ],
-    [
-        'id' => 6, 'description' => 'Access Point', 'date_created' => '28/08/2025', 'total' => 'R80',
-        'mgr_approval' => 'Awaiting', 'mgr_date_mod' => '31/08/2025', 'mgr_notes' => '',
-        'fin_approval' => 'Awaiting', 'fin_date_mod' => '', 'fin_notes' => '',
-        'quote1' => false, 'quote2' => false, 'quote3' => false
-    ],
-];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,42 +51,51 @@ $requisitions = [
 
                 <div class="table-container">
                     <table class="requisition-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Description</th>
-                                <th>Date Created</th>
-                                <th>Total</th>
-                                <th>Manager's approval</th>
-                                <th>Date Modified</th>
-                                <th>Notes(Manager)</th>
-                                <th>Finance approval</th>
-                                <th>Date Modified</th>
-                                <th>Notes(Finance)</th>
-                                <th>Quote 1</th>
-                                <th>Quote 2</th>
-                                <th>Quote 3</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($requisitions as $req): ?>
-                            <tr>
-                                <td><?php echo $req['id']; ?></td>
-                                <td><?php echo $req['description']; ?></td>
-                                <td><?php echo $req['date_created']; ?></td>
-                                <td><?php echo $req['total']; ?></td>
-                                <td><?php echo $req['mgr_approval']; ?></td>
-                                <td><?php echo $req['mgr_date_mod']; ?></td>
-                                <td><?php echo $req['mgr_notes']; ?></td>
-                                <td><?php echo $req['fin_approval']; ?></td>
-                                <td><?php echo $req['fin_date_mod']; ?></td>
-                                <td><?php echo $req['fin_notes']; ?></td>
-                                <td><?php echo $req['quote1'] ? '<a href="#" class="quote-icon">&#x1F4C4;</a>' : ''; ?></td>
-                                <td><?php echo $req['quote2'] ? '<a href="#" class="quote-icon">&#x1F4C4;</a>' : ''; ?></td>
-                                <td><?php echo $req['quote3'] ? '<a href="#" class="quote-icon">&#x1F4C4;</a>' : ''; ?></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
+                       <thead>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Date Created</th>
+        <th>Total</th>
+        <th>Manager's approval</th>
+        <th>Date Modified</th>
+        <th>Notes(Manager)</th>
+        <th>Finance approval</th>
+        <th>Date Modified</th>
+        <th>Notes(Finance)</th>
+    </tr>
+</thead>
+<tbody id="requisitionTableBody">
+    </tbody>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('get_requisitions.php')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('requisitionTableBody');
+            tableBody.innerHTML = ''; 
+
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${row.id}</td>
+                    <td>${row.description || 'No description'}</td>
+                    <td>${row.date_created}</td>
+                    <td>R${row.total}</td>
+                    <td class="status-${row.manager_status.toLowerCase()}">${row.manager_status}</td>
+                    <td>${row.manager_date_modified || '-'}</td>
+                    <td>${row.manager_note || ''}</td>
+                    <td class="status-${row.finance_status.toLowerCase()}">${row.finance_status}</td>
+                    <td>${row.finance_date_modified || '-'}</td>
+                    <td>${row.finance_note || ''}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+</script>
                     </table>
                 </div>
 
